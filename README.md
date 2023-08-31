@@ -1,6 +1,6 @@
 Build a simple laravel development environment with docker-compose.  
 
- Container structures
+ Container structures:
 -php 
 -mysql 
 -nginx 
