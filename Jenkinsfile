@@ -12,9 +12,9 @@ pipeline {
         }
         stage("Verify SSH connection to server") {
             steps {
-                sshagent(credentials: ['aws-ec2']) {
+                sshagent(credentials: ['Github']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ec2-user@13.40.116.143 whoami
+                        ssh git@github.com:BassantBassam/laraveldocker.test.git
                     '''
                 }
             }
