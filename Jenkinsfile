@@ -12,7 +12,7 @@ pipeline {
         }
         stage("Verify SSH connection to server") {
             steps {
-                sshagent(credentials: ['Github']) {
+                sshagent(credentials: ['bassant']) {
                     sh '''
                         ssh git@github.com:BassantBassam/laraveldocker.test.git
                     '''
