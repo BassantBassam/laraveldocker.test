@@ -9,15 +9,7 @@ pipeline {
                     docker compose version
                 '''
             }
-        }
-        stage("Verify SSH connection to server") {
-            steps {
-                sshagent(credentials: ['bassant']) {
-                    sh '''
-                        ssh git@github.com:BassantBassam/laraveldocker.test.git
-                    '''
-                }
-            }
+      
         }        
         stage("Clear all running docker containers") {
             steps {
@@ -63,7 +55,7 @@ pipeline {
                 sh 'scp -v -o StrictHostKeyChecking=no -i ${keyfile} /var/lib/jenkins/workspace/LaravelTest/artifact.zip ec2-user@13.40.116.143:/home/ec2-user/artifact'
             }
             sshagent(credentials: ['Github']) {
-                sh 'ssh -o StrictHostKeyChecking=no ec2-user@13.40.116.143 unzip -o /home/ec2-user/artifact/artifact.zip -d /var/www/html'
+                sh 'ssh git@github.com:BassantBassam/laraveldocker.test.git'
                 script {
                     try {
                         sh 'ssh git@github.com:BassantBassam/laraveldocker.test.git'
