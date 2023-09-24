@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.2-fpm
 
 # Install dockerize so we can wait for containers to be ready
 ENV DOCKERIZE_VERSION 0.6.1
@@ -8,7 +8,7 @@ RUN curl -s -f -L -o /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/
     && rm /tmp/dockerize.tar.gz
 
 # Install Composer
-ENV COMPOSER_VERSION 2.1.5
+ENV COMPOSER_VERSION 2.6.3
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=$COMPOSER_VERSION
 
@@ -42,9 +42,9 @@ RUN apt-get update \
     && docker-php-ext-enable redis \
     && rm -rf /var/lib/apt/lists/*;
 
-COPY ./docker/php/laravel.ini /usr/local/etc/php/conf.d/laravel.ini
+COPY ./php/laravel.ini /usr/local/etc/php/conf.d/laravel.ini
 
 WORKDIR /usr/src/app
 
-RUN chown -R www-data:www-data .  
+RUN chown -R www-data:www-data .
 
